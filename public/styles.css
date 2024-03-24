@@ -1,0 +1,172 @@
+
+
+body{
+    font-family: "Quicksand",sans-serif;
+ 
+}
+
+.main-home{
+    background-color: #eeeeee;
+    
+    background-image:  repeating-radial-gradient( circle at 0 0, transparent 0, #eeeeee 6px ), repeating-linear-gradient( #ffffff55, #ffffff );
+}
+.main-shop{
+    background-color: #eeeeee;
+
+    background-image:  repeating-radial-gradient( circle at 0 0, transparent 0, #eeeeee 6px ), repeating-linear-gradient( #ffffff55, #ffffff );
+}
+.desc{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.nav-item{
+    margin-right: 80px;
+    text-transform: uppercase;
+    font-size: 1rem;
+}
+.navbar-brand{
+    font-size: 1.5rem;
+    color: black;
+}
+.navbar-brand:hover{
+    color:  #6ec6f0;
+    font-size: 1.7rem;
+    transition: 1000ms;
+}
+
+.icon{
+    color: black;
+    font-size: 30px;
+}
+.design{
+    font-family: "Aboreto", sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+}
+.footer{
+    font-size: 15px;
+    
+    color: white;
+}
+.card:hover{
+    box-shadow: 2px 2px 13px 3px rgba(20,20,20,0.7);
+    box-shadow: 2px 2px 13px 3px rgba(20,20,20,0.7);
+    box-shadow: 2px 2px 13px 3px rgba(20,20,20,0.7);
+    transition: 700ms;
+}
+.motto{
+    color: #6ec6f0;
+}
+.motto:hover{
+    color: white;
+    transition: 1000ms;
+    cursor: pointer;
+    font-size: small;
+    
+}
+#home{
+    color: white;
+    background-color: #28242c;
+    display: inline-block;
+    border-radius: 3px;
+}
+#home:hover{
+    color:black;
+    background-color: white;
+    display: inline-block;
+    border-radius: 3px;
+    transition: 1000ms;
+}
+#shop{
+    color: black;
+}
+
+#shop:hover{
+    color: white;
+    background: #28242c;
+    display: inline-block;
+    border-radius: 3px;
+    transition: 1000ms;
+}
+
+#account{
+    color: black;
+}
+#account:hover{
+    color: white;
+    background: #28242c;
+    display: inline-block;
+    border-radius: 3px;
+    transition: 1000ms;
+}
+
+.text-main{
+    color: black;
+}
+
+.nav-item.account .nav-link{
+    color: black;
+}
+.slogan{
+    color:#6ec6f0;
+    font-weight: 500;
+}
+
+.btn{
+
+font-size: 14px;
+color: #fff;
+background: linear-gradient(90deg, #6ec6f0 0%, #6ec6f0 100%);
+padding: 10px 30px;
+border: solid #6ec6f0 2px;
+box-shadow: rgb(110, 198, 240) 5px 5px 25px 5px;
+border-radius: 3px;
+transition : 1000ms;
+transform: translateY(0);
+
+cursor: pointer;
+}
+
+.btn:hover{
+
+transition : 1000ms;
+padding: 10px 50px;
+transform : translateY(-0px);
+background: linear-gradient(90deg, #6ec6f0 0%, #6ec6f0 100%);
+color: #ffffff;
+border: solid 2px #6ec6f0;
+}
+
+
+.btn{
+    background-color: black;
+    color: white;
+    border-radius: 1px;
+    border: none;
+    outline: none;
+    font-weight: 500;
+    
+}
+
+
+.bg-image {
+    background-image: url("homeimg.png"); /* Specify your image URL */
+    background-size: cover;
+    background-position: center; /* Align bottom of image with bottom of container */
+    min-height: 85vh; /* Set minimum height of container to full viewport height */
+
+}
+a{
+    text-decoration: none;
+    color: inherit;
+}
+.create-acct{
+    text-decoration: underline;
+
+}
+.create-acct:hover{
+    color:#6ec6f0;
+    transition: 1000ms;
+}
