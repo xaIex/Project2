@@ -33,7 +33,7 @@
 
     <nav class="navbar navbar-expand-md bg-white navbar-dark p-3">
         <div class="container">
-           <a href="home.html" class="navbar-brand text-lowercase">Alex Studios</a>
+           <a href="/" class="navbar-brand text-lowercase">Alex Studios</a>
 
            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
            data-bs-target="#navmenu"><span class="navbar-toggler-icon bg-dark"></span></button>
@@ -41,7 +41,7 @@
            <div class="collapse navbar-collapse" id="navmenu">
                 <ul class="navbar-nav m-auto my-2 my-lg-0">
                     <li class="nav-item">
-                        <a href="home.html" id="home" class="nav-link active">Home</a>
+                        <a href="/" id="home" class="nav-link active">Home</a>
                     </li>
                     <li class="nav-item">
                         <a href="shop.html" id="shop" class="nav-link">Shop</a>
@@ -68,7 +68,7 @@
 
     <div class="container mt-3 col-md-4">
         <h2>Login</h2>
-        <form action="/account" method="post" onsubmit="return validateForms()">
+        <form action="/users/account" method="post" onsubmit="return validateForms()">
           <div class="mb-3 mt-3">
             <label for="email">Email:</label>
             <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">

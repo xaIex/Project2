@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 const bycrpt = require('bcrypt');
 const session = require('express-session');
 const MongoDBStore = require("connect-mongodb-session")(session);
-const User = require('./config');
+const User = require('../models/config');
+const userRoute = require('../routes/userRoutes');
 
 const app = express();
 // Set up MongoDB session store
@@ -31,6 +32,7 @@ app.set('view engine','ejs'); // ejs as view engine for dynamic content
 app.use(express.static("public")); // use public files
 app.use(express.urlencoded({extended: false})); // parse body give access for req.body
 
+
 mongoose.connect('mongodb+srv://xcastillo2001:Sq5lBuispIryiMpf@project2.qadwpbn.mongodb.net/usersandorders?retryWrites=true&w=majority&appName=project2')
 .then(() => {
     console.log('connected to database!');
@@ -39,17 +41,24 @@ mongoose.connect('mongodb+srv://xcastillo2001:Sq5lBuispIryiMpf@project2.qadwpbn.
     console.log('error cannot connect to database');
 })
 
+app.use('/users', userRoute);
 
+app.get('/',(req,res) => {
+    res.render('home.ejs')
+});
 
 app.get('/createAccount', (req,res) => {
     res.render('createAccount.ejs');
 });
+
 app.get('/account',(req,res) => {
     res.render('account.ejs')
-})
+});
 app.get('/test', isAuth, (req,res) => {
     res.render('test.ejs');
-})
+});
+
+/*
 app.post('/createAccount', async (req,res) => {
     try{
         const newUser = new User( { // document, create new instance of a user
@@ -86,8 +95,8 @@ app.post('/createAccount', async (req,res) => {
         res.status(500).send('Error creating user'); // Send error response to client
     }
   
-});
-
+});*/
+/*
 app.post('/account', async (req,res) => {
     const { email, pswd } = req.body;
 
@@ -103,7 +112,8 @@ app.post('/account', async (req,res) => {
     }
     req.session.isAuth = true;
     res.redirect('/test')
-});
+});*/
+
 app.post('/logout', (req,res) => {
     req.session.destroy((err) => {
         if(err) throw err;
