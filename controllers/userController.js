@@ -52,7 +52,7 @@ const loginAccount = async (req,res) =>{
         return res.redirect('/account');
     }
     req.session.isAuth = true;
-    res.redirect('/test')
+    res.redirect('/home')
 };
 
 module.exports = {

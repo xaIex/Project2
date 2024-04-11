@@ -30,7 +30,9 @@ const isAuth = (req, res, next) => {
 }
 app.set('view engine','ejs'); // ejs as view engine for dynamic content
 app.use(express.static("public")); // use public files
+
 app.use(express.urlencoded({extended: false})); // parse body give access for req.body
+app.use(express.json()); // Parse JSON bodies
 
 
 mongoose.connect('mongodb+srv://xcastillo2001:Sq5lBuispIryiMpf@project2.qadwpbn.mongodb.net/usersandorders?retryWrites=true&w=majority&appName=project2')
@@ -43,6 +45,104 @@ mongoose.connect('mongodb+srv://xcastillo2001:Sq5lBuispIryiMpf@project2.qadwpbn.
 
 app.use('/users', userRoute);
 
+
+app.post('/addToCart', (req, res) => {
+    const { productId, productName, productPrice, productImage } = req.body; // details in the request body
+
+    // Create a new item object with product details
+    const newItem = {
+        id: productId,
+        name: productName,
+        price: productPrice,
+        image: productImage,
+        quantity: 1 // Assuming the initial quantity is 1
+    };
+
+    // Initialize the cart in the session if it doesn't exist
+    req.session.cart = req.session.cart || [];
+
+    // Check if the item is already in the cart
+    const existingItemIndex = req.session.cart.findIndex(item => item.id === productId);
+    if (existingItemIndex !== -1) {
+        // If the item is already in the cart, increment its quantity
+        req.session.cart[existingItemIndex].quantity++;
+    } else {
+        // If the item is not in the cart, add it
+        req.session.cart.push(newItem);
+    }
+
+    // Send a response (you may redirect the user to the cart page or send a JSON response)
+    console.log(req.session.cart);
+    res.send('Item added to cart successfully');
+});
+
+app.post('/remove-from-cart', (req, res) => {
+    const { productId } = req.body;
+
+    // Retrieve cart from session
+    const cart = req.session.cart || [];
+
+    // Find index of item to remove
+    const itemIndex = cart.findIndex(item => item.id === productId);
+
+    if (itemIndex !== -1) {
+        // Remove item from cart array
+        cart.splice(itemIndex, 1);
+        // Update session with modified cart
+        req.session.cart = cart;
+        res.json({ success: true, message: 'Item removed from cart' });
+    } else {
+        res.json({ success: false, message: 'Item not found in cart' });
+    }
+});
+
+app.post('/update-cart-quantity', (req, res) => {
+    const { productId, change } = req.body;
+
+    // Retrieve cart from session
+    const cart = req.session.cart || [];
+
+    // Find index of item to update
+    const itemIndex = cart.findIndex(item => item.id === productId);
+
+    if (itemIndex !== -1) {
+        // Update item quantity
+        cart[itemIndex].quantity += change;
+        // Ensure quantity is not negative
+        if (cart[itemIndex].quantity < 0) {
+            cart[itemIndex].quantity = 0;
+        }
+        if(cart[itemIndex].quantity === 0){
+            cart.splice(itemIndex, 1);
+   
+        }
+       
+        
+        // Update session with modified cart
+        req.session.cart = cart;
+        res.json({ success: true, message: 'Cart quantity updated' });
+    } else {
+        
+        res.json({ success: false, message: 'Item not found in cart' });
+    }
+});
+
+app.get('/cart', (req, res) => {
+    // Retrieve cart data from session
+    const cart = req.session.cart || [];
+
+    // Render cart.ejs and pass cart data to it
+    res.render('cart', { cart });
+});
+  
+app.post('/clearCart', (req, res) => {
+    // Clear the cart data in the session
+    req.session.cart = [];
+    
+    // Redirect the user back to the cart page or any other page you prefer
+    res.redirect('/cart');
+});
+
 app.get('/',(req,res) => {
     res.render('home.ejs')
 });
@@ -54,9 +154,33 @@ app.get('/createAccount', (req,res) => {
 app.get('/account',(req,res) => {
     res.render('account.ejs')
 });
-app.get('/test', isAuth, (req,res) => {
-    res.render('test.ejs');
+app.get('/home', isAuth, (req,res) => {
+    res.render('home.ejs');
 });
+
+app.get('/product1Page',(req,res) => {
+    res.render('productPage/product1Page.ejs');
+});
+
+app.get('/product2Page', (req,res) =>{
+    res.render('productPage/product2Page.ejs');
+});
+
+app.get('/product3Page', (req,res) =>{
+    res.render('productPage/product3Page.ejs');
+});
+
+
+app.post('/logout', (req,res) => {
+    req.session.destroy((err) => {
+        if(err) throw err;
+        res.redirect('/createAccount');
+    })
+})
+app.listen(3000, () => {
+    console.log("running on port 3000");
+});
+
 
 /*
 app.post('/createAccount', async (req,res) => {
@@ -114,15 +238,6 @@ app.post('/account', async (req,res) => {
     res.redirect('/test')
 });*/
 
-app.post('/logout', (req,res) => {
-    req.session.destroy((err) => {
-        if(err) throw err;
-        res.redirect('/createAccount');
-    })
-})
-app.listen(3000, () => {
-    console.log("running on port 3000");
-});
 
   /*try {
         console.log('Form data:', req.body);

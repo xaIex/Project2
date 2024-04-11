@@ -125,7 +125,12 @@ box-shadow: rgb(110, 198, 240) 5px 5px 25px 5px;
 border-radius: 3px;
 transition : 1000ms;
 transform: translateY(0);
-
+background-color: black;
+    color: white;
+    border-radius: 1px;
+    border: none;
+    outline: none;
+    font-weight: 500;
 cursor: pointer;
 }
 
@@ -140,15 +145,8 @@ border: solid 2px #6ec6f0;
 }
 
 
-.btn{
-    background-color: black;
-    color: white;
-    border-radius: 1px;
-    border: none;
-    outline: none;
-    font-weight: 500;
-    
-}
+
+
 
 
 .bg-image {
@@ -170,3 +168,28 @@ a{
     color:#6ec6f0;
     transition: 1000ms;
 }
+
+.cart-item-image {
+    max-width: 150px; /* Adjust the maximum width as needed */
+    max-height: 150px; /* Adjust the maximum height as needed */
+    /* Add any other styling properties as needed */
+    border: 1px solid;
+    border-color: #28242c;
+}
+
+.cart-item{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+
+
+}
+
+.checkout{
+    background-color: rgb(223, 223, 223);
+    border: 2px solid;
+    border-color: rgb(184, 184, 184);
+    border-radius: 2px;
+    height: 300px;
+}
+
