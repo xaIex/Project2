@@ -21,6 +21,53 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
     <link rel="stylesheet" href="styles.css">
 
+    <script>
+        function validateForm() {
+            var name = document.getElementById('name').value.trim();
+            var email = document.getElementById('email').value.trim();
+            var address = document.getElementById('address').value.trim();
+            var card = document.getElementById('card').value.trim();
+            var expiry = document.getElementById('expiry').value.trim();
+            var cvv = document.getElementById('cvv').value.trim();
+            var items = document.getElementById('items').value.trim();
+    
+            if (name === '' || email === '' || address === '' || card === '' || expiry === '' || cvv === '' || items === '') {
+                alert('Please fill in all fields.');
+                return false;
+            }
+    
+            // Check if email is valid
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Please enter a valid email address.');
+                return false;
+            }
+    
+            // Check if card number is valid (16 digits)
+            var cardRegex = /^\d{16}$/;
+            if (!cardRegex.test(card)) {
+                alert('Please enter a valid 16-digit credit card number.');
+                return false;
+            }
+    
+            // Check if expiry date is valid (MM/YY format)
+            var expiryRegex = /^(0[1-9]|1[0-2])\/\d{2}$/;
+            if (!expiryRegex.test(expiry)) {
+                alert('Please enter a valid expiry date in MM/YY format.');
+                return false;
+            }
+    
+            // Check if CVV is valid (3 digits)
+            var cvvRegex = /^\d{3}$/;
+            if (!cvvRegex.test(cvv)) {
+                alert('Please enter a valid 3-digit CVV.');
+                return false;
+            }
+    
+            return true;
+        }
+    </script>
+    
 </head>
 <body>
     <div class="container-fluid bg-white">
@@ -55,9 +102,8 @@
              
            </div>
         </div>
-     
-       
     </nav>
+    
     <div class="container-fluid bg-dark">
         <div class="row text-lowercase p-2 design">
             <div class="col-4 text-black"><span class="name1">alex castillo</span></div>
@@ -68,7 +114,7 @@
 
     <div class="container mt-3">
         <h2>Checkout</h2>
-        <form action="/checkout" method="post">
+        <form action="/checkout" method="post" onsubmit="return validateForm()">
             <div class="mb-3">
                 <label for="name">Name:</label>
                 <input type="text" class="form-control" id="name" placeholder="Enter your name" name="name" required>
@@ -103,3 +149,4 @@
 
 </body>
 </html>
+
