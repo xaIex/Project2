@@ -73,7 +73,8 @@ app.post('/addToCart', (req, res) => {
 
     // Send a response (you may redirect the user to the cart page or send a JSON response)
     console.log(req.session.cart);
-    res.send('Item added to cart successfully');
+    res.send('Item added to cart successfully'); // some how important to display the items in the cart, figure out why later
+   
 });
 
 app.post('/remove-from-cart', (req, res) => {
@@ -169,7 +170,30 @@ app.get('/product2Page', (req,res) =>{
 app.get('/product3Page', (req,res) =>{
     res.render('productPage/product3Page.ejs');
 });
+/*
+app.get('/orders',(req,res) => {
+    try{
+        const user = await User.
+        res.render('orders.ejs');
+    }catch(err){
+        console.error(err);
+    }
+ 
+});*/
+app.get('/profile', isAuth, (req,res) => {
+    const user = req.session.user;
+    res.render('profile', {user})
+});
 
+app.get('/orders', isAuth, (req,res) => {
+    const user = req.session.user; // loginAccount in userController.js
+    const cart = req.session.cart || [];
+    const shippingVal = req.query.shipping || 0;
+
+ 
+    console.log(user);
+    res.render('orders.ejs', {user, cart, shippingVal});
+});
 
 app.post('/logout', (req,res) => {
     req.session.destroy((err) => {

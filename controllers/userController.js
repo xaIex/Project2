@@ -52,8 +52,20 @@ const loginAccount = async (req,res) =>{
         return res.redirect('/account');
     }
     req.session.isAuth = true;
+    req.session.user = {
+        id: existingUser._id, // underscore id because that is how it is called in the mongodb database
+        email:existingUser.email,
+        phone: existingUser.phone,
+        address: existingUser.address,// note: after existingUser, the name is dependent of the registerAccount route, when we create a new User, since we named it address, we call it address
+        zip: existingUser.zip,
+        city: existingUser.city,
+        state: existingUser.state,
+        password: existingUser.password  // same with with password, we called it pswd intially in the html but we set it to password in the registerAccount 
+
+    }
     res.redirect('/home')
 };
+
 
 module.exports = {
     registerAccount,

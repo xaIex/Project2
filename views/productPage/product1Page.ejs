@@ -52,7 +52,7 @@
                     </li>
                     
                 </ul>
-                <a href="/cart"><i class="fa-solid fa-bag-shopping icon"></i></a>
+                <a href="/cart"><i class="fa-solid fa-bag-shopping icon bag"></i></a>
              
            </div>
         </div>
@@ -80,7 +80,9 @@
             <div class="col-md-7 text-center m-auto">
          
                 <h3 class="card-title">Vintage Wash Denim</h3>
-                <h5 class="card-text">100% Organic Cotton</h5>
+                <h5 class="card-text">$300</h5>
+                <h6 class="card-text">100% Organic Cotton</h6>
+                
                 
                 <ul class="desc p-2">
                     <li>
@@ -148,8 +150,10 @@
     .then(data => {
         // Handle response (optional)
         console.log(data);
+        
     })
     .catch(error => console.error('Error:', error));
+    alert("Product added to cart!");
 }
 
 </script>

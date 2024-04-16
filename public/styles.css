@@ -173,23 +173,45 @@ a{
     max-width: 150px; /* Adjust the maximum width as needed */
     max-height: 150px; /* Adjust the maximum height as needed */
     /* Add any other styling properties as needed */
-    border: 1px solid;
-    border-color: #28242c;
+    border: 2px solid;
+    border-color: #eeeeee;
 }
 
 .cart-item{
     display: flex;
     align-items: center;
     flex-direction: row;
+    
+    background-color: #eeeeee;
+
+    background-image:  repeating-radial-gradient( circle at 0 0, transparent 0, #eeeeee 6px ), repeating-linear-gradient( #ffffff55, #ffffff );
 
 
 }
 
-.checkout{
-    background-color: rgb(223, 223, 223);
-    border: 2px solid;
-    border-color: rgb(184, 184, 184);
-    border-radius: 2px;
+.bag:hover{
+    color: #6ec6f0;
+    transition: 1000ms;
+    font-size: 2.5rem;
+}
+
+.checkout-overview{
+    width: 600px;
+    
+}
+
+
+
+.summary-order {
+    width: 350px; /* Set width of the fixed box */
     height: 300px;
+    position: fixed; 
+    top: 10rem; /* Position from the top */
+    right: 80px; /* Position from the right */
+    bottom: 100px; /* Position from the bottom */
+    background-color: rgb(243, 243, 243);
+    padding: 20px;
+    border-radius: 5px;
+    
+   
 }
-

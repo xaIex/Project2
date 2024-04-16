@@ -73,7 +73,7 @@
             <div class="col-md-5 py-1">
                 <div class="card border-1">
                     <div class="card-body">
-                        <img src="<%= productImage %>" class="img-fluid" alt="blue jeans">
+                        <img src="<%= products.product1 %>" class="img-fluid" alt="blue jeans">
                     </div>
                 </div>
             </div>
@@ -94,7 +94,7 @@
                     </li>
                 </ul>
                 
-                <button class="btn btn-lg my-2" onclick="addToCart('<%= productId %>', '<%= productName %>', '<%= productPrice %>', '<%= productImage %>')">Add to Cart</button>
+                <button class="btn btn-lg my-2" onclick="addToCart('<%= products.name %>', '<%= productName %>', '<%= productPrice %>', '<%= productImage %>')">Add to Cart</button>
             </div>
         </div>
     </div>
