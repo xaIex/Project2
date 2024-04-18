@@ -102,7 +102,27 @@
                   </li>
                 </ul>
               <!-- InstanceEndEditable -->
-                <button class="btn btn-lg my-2">Add to Cart</button>
+                <form id="sizing" method="get">
+                    <label for="size">Select Size:</label>
+                    <select id="size" name="size">
+                        <option value="Small">Small</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Large">Large</option>
+                    </select>
+                </form>
+                <button onclick="showChoice()" form="sizing" class="btn btn-lg my-2">Add to Cart</button>
+                <script>
+                    function showChoice() {
+                        // Get the selected value from the dropdown
+                        const selectedValue = document.getElementById('size').value;
+
+                        if (selectedValue) {
+                            alert('You have chosen: ' + selectedValue);
+                        } else {
+                            alert('Please select a size!');
+                        }
+                    }
+                </script>
           </div>
         </div>
     </div>
