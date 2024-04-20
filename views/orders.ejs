@@ -20,6 +20,7 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
     <link rel="stylesheet" href="../styles.css">
+    
 
 </head>
 <body>
@@ -34,18 +35,18 @@
 
     <nav class="navbar navbar-expand-md bg-white navbar-dark p-3">
         <div class="container">
-           <a href="/mainShop/home.html" class="navbar-brand text-lowercase">Alex Studios</a>
+           <a href="/mainShop/home.html" class="navbar-brand text-lowercase"><span><i class="fa-brands fa-atlassian" style="color: #535353;"></i></span>Alex Studios</a>
 
            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
            data-bs-target="#navmenu"><span class="navbar-toggler-icon bg-dark"></span></button>
     
            <div class="collapse navbar-collapse" id="navmenu">
-                <ul class="navbar-nav m-auto my-2 my-lg-0">
+                <ul class="navbar-nav mx-auto my-2 my-lg-0">
                     <li class="nav-item">
                         <a href="../home.html" id="home" class="nav-link active">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a href="../shop.html" id="shop" class="nav-link">Shop</a>
+                        <a href="../shop.html" id="shop" class="nav-link shop">Shop</a>
                     </li>
                     <li class="nav-item account">
                         <a href="../account.html" id="account" class="nav-link">Account</a>
@@ -78,7 +79,7 @@
         <h1 class="pt-3">Checkout</h1>
         <hr>
         
-        <form action="">
+        <form action="/submitOrder" method="post">
             <h3>Address</h3>
             
             <div class="mb-3 mt-3 d-flex justify-content-between">
@@ -129,25 +130,16 @@
                 <h3>Delivery</h3>
                 <p>Ship to Address</p>
                 <div class="form-check mb-3">
-                    <input class="form-check-input" type="radio" name="shipping" id="one-day" value="12.99">
-                    <label class="form-check-label" for="one-day">
-                        1 Day Shipping - $12.99
-                    </label>
-                </div>
-                <div class="form-check mb-3">
-                    <input class="form-check-input" type="radio" name="shipping" id="three-day" value="7.99" checked>
+                    <input class="form-check-input" type="radio" name="shipping" id="three-day" value="12.99" checked>
                     <label class="form-check-label" for="three-day">
-                        3 Day Shipping - $7.99
+                        3 Day Shipping - $12.99
                     </label>
                 </div>
-                <div class="form-check mb-3">
-                    <input class="form-check-input" type="radio" name="shipping" id="seven-day" value="4.99">
-                    <label class="form-check-label" for="seven-day">
-                        7 Day Shipping - $4.99
-                    </label>
-                </div>
+                
             </div>
-            <p>Shipping: $<%= shippingVal %></p>
+           
+            
+
             
             <hr>
 
@@ -155,15 +147,15 @@
                 <h3>Payment Info</h3>
                 <div class="mb-3">
                     <label for="card-number">Card Number:</label>
-                    <input type="text" class="form-control" id="card-number" placeholder="Enter card number" name="card-number">
+                    <input type="text" class="form-control" id="card-number" placeholder="Enter card number" name="cardnumber">
                 </div>
                 <div class="mb-3">
                     <label for="expiry">Expiration Date:</label>
                     <input type="text" class="form-control" id="expiry" placeholder="MM/YYYY" name="expiry">
                 </div>
                 <div class="mb-3">
-                    <label for="ccv">CCV:</label>
-                    <input type="text" class="form-control" id="ccv" placeholder="Enter CCV" name="ccv">
+                    <label for="cvv">CVV:</label>
+                    <input type="text" class="form-control" id="cvv" placeholder="Enter CVV" name="cvv">
                 </div>
             </div>
 
@@ -171,6 +163,8 @@
 
             <% let subtotal = 0; %>
             <% let itemsTotal = 0; %>
+            <% let tax = 0; %>
+            <% let total = 0; %>
             <div class="order-contents">
                 <h3>Products</h3>
               <% cart.forEach(item => { %>
@@ -178,6 +172,7 @@
                   <img src="<%= item.image %>" alt="<%= item.name %>" class="cart-item-image img-fluid card p-1">
                   <div class="cart-item-details p-2">
                     <h4><%= item.name %></h4>
+                    <input type="hidden" name="productname" value="<%= item.name %>">
                     <p>Price: $<span class="total-price"><%= item.quantity * item.price %></span></p>
                     <p>Quantity:
                       <span class="quantity"><%= item.quantity %></span>
@@ -188,9 +183,10 @@
                 <% itemsTotal += item.quantity %>
               <% }); %>
             </div>
+           
         </div>
     
-        </form>
+        
         <div class="summary-order card">
         <div class="summary-title d-flex justify-content-between">
             <h5 class="text-center">Order Summary</h5>
@@ -198,19 +194,30 @@
         </div>
         <hr>
         <div class="summary-content text-center">
-            <p>Subtotal: $<%=subtotal %></p>
-            <p>Tax: $<%= itemsTotal * 0.75 %></p>
-            <p>Shipping: $<%= shippingVal %></p>
-        </div>
-           
-    
+            <p>Subtotal: $<%= subtotal %></p>
+            <% tax = itemsTotal * 0.75 %>
+            <p>Tax: $<%= tax %></p>
             
+            <p>Shipping: $12.99</p> <!-- Display shipping cost -->
+            <% total = subtotal + tax + 12.99 %> <!-- Add shipping cost to the total -->
+            <p>Order Total: $<%= total %></p> <!-- Display total -->
+            <input type="hidden" name="ordertotal" value="<%= total %>"> <!-- Store total in hidden input -->
+            <div class="d-flex justify-content-center">
+                <button class="btn btn-primary">Submit</button>  
+            </div>
         </div>
+        </div>
+    </form>
+        
+       
+   
     <% } %>
   
     
-        
+</body>
+
+
+</html>  
     
 
 
-</body>

@@ -67,38 +67,50 @@
         </div>
     </div>
 
+    
     <section class="main-home">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-5 py-1">
-                <div class="card border-1">
-                    <div class="card-body">
-                        <img src="products/product1.jpg" class="img-fluid" alt="blue jeans">
+        <form action="/cart/addProduct" method="post">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5 py-1">
+                    <div class="card border-1">
+                        <div class="card-body">
+                            
+                        <img src="../products/product3.jpg" class="img-fluid" alt="nylon jacket">
+                     
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-7 text-center m-auto">
-         
-                <h3 class="card-title">Vintage Wash Denim</h3>
-                <h5 class="card-text">100% Organic Cotton</h5>
-                
-                <ul class="desc p-2">
-                    <li>
-                        Loose Fit
-                    </li>
-                    <li>
-                        Stretch
-                    </li>
-                    <li>
-                        Mid Waist
-                    </li>
-                </ul>
-                
-                <button class="btn btn-lg my-2" onclick="addToCart()">Add to Cart</button>
+                <div class="col-md-7 text-center m-auto">
+                    <!-- InstanceBeginEditable name="description" -->
+                  <h3 class="card-title">Satin Jacket</h3>
+                  <h5 class="card-text">$300</h5>
+                  <h6 class="card-text">100% Nylon</h6>
+                    
+                    <ul class="desc p-2">
+                        <li>
+                            Oversized
+                      </li>
+                        <li>
+                            Wind Resistent
+                      </li>
+                        <li>
+                            Cargo
+                      </li>
+                    </ul>
+              
+                  
+                  <input type="hidden" name="productId" value="product3">
+                  <input type="hidden" name="productName" value="Satin Jacket">
+                  <input type="hidden" name="productPrice" value="300">
+                  <input type="hidden" name="productImage" value="../products/product3.jpg">
+                    <button class="btn btn-lg my-2">Add to Cart</button>
+              </div>
             </div>
         </div>
-    </div>
-    </section>
+    </form>
+        </section>
+ 
 	
 	
 <div class="container-fluid bg-dark">
@@ -129,29 +141,6 @@
 
 </body>
 
-<script>
-    function addToCart() {
-    // Send AJAX request to server to add product to cart
-    fetch('/addToCart', {
-        method: 'POST',
-        body: JSON.stringify({ 
-            productId: 'product3', // Replace with the actual product ID
-            productName: 'Satin Nylon Jacket', // Replace with the actual product name
-            productPrice: 750, // Replace with the actual product price
-            productImage: 'products/product3.jpg' // Replace with the actual product image URL
-        }),
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })
-    .then(response => response.json())
-    .then(data => {
-        // Handle response (optional)
-        console.log(data);
-    })
-    .catch(error => console.error('Error:', error));
-}
 
-</script>
 
 </html>

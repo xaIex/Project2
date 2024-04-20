@@ -67,91 +67,48 @@
         </div>
     </div>
 
-    <section class="main-home">
-    <div class="container">
+    
+    <div class="container p-3">
+        <% let subtotal = 0; %>
+        <% let itemsTotal = 0; %>
+        <!--This displays the recently added product in the cart which means it'll display the product when you add to cart -->
+        <% let productAdded = cart.length - 1; %>
         <div class="row">
-            <div class="col-md-5 py-1">
-                <div class="card border-1">
-                    <div class="card-body">
-                        <img src="<%= products.product1 %>" class="img-fluid" alt="blue jeans">
-                    </div>
-                </div>
+            
+          <div class="cart-item col-md-9 justify-content-center p-3">
+            <img src="<%= recentlyAddedItem.image %>" alt="<%= recentlyAddedItem.name %>" class="cart-item-image img-fluid p-1">
+            <div class="text-center p-3">
+              <h4 class=""><span class="checkmark">&#10003;</span>Added to Cart</h4> 
+              <p class="product-title"><strong><%=recentlyAddedItem.name %></strong></p>
+              <p><strong>Price: </strong>$<span class="total-price"><%= cart[productAdded].quantity * cart[productAdded].price %></span></p>
+              <p><strong>Quantity: </strong><%= cart[productAdded].quantity %></p>
             </div>
-            <div class="col-md-7 text-center m-auto">
+            <% subtotal += cart[productAdded].quantity * cart[productAdded].price; %>
+            <% cart.forEach(item => { %>
+            <% itemsTotal += item.quantity %>
+            <% }); %>
+          </div>
+        
+     
          
-                <h3 class="card-title"><%= productName %></h3>
-                <h5 class="card-text"><%= productDescription %></h5>
-                
-                <ul class="desc p-2">
-                    <li>
-                        Loose Fit
-                    </li>
-                    <li>
-                        Stretch
-                    </li>
-                    <li>
-                        Mid Waist
-                    </li>
-                </ul>
-                
-                <button class="btn btn-lg my-2" onclick="addToCart('<%= products.name %>', '<%= productName %>', '<%= productPrice %>', '<%= productImage %>')">Add to Cart</button>
-            </div>
-        </div>
-    </div>
-    </section>
-	
-	
-<div class="container-fluid bg-dark">
-    <div class="row text-lowercase p-2 design">
-        <div class="col-4 text-white"><span class="name1">alex castillo</span></div>
-        <div class="col-4 text-white text-center">Alex castillo</div>
-        <div class="col-4 text-white text-end">alex castillo</div>
-    </div>
-</div>
-    <footer class="footer">
-        <div class="container-fluid bg-dark">
-            <div class="row p-4">
-                <hr>
-                <h4>Contact Us</h4>
-                <ul>
-                    <li>Address: 123 Main Street, City, Country</li>
-                    <li>Phone: +1 (123) 456-7890</li>
-                    <li>Email: xcastillo2001@gmail.com</li>
-                </ul>
-                <hr>
-            </div>
-            <div class="row">
-                <div class="col-4 p-2 design">Copyright &copy; 2024 alex studios., Ltd All rights reserved</div>
-            </div>
+        
+        
+        <div class="col-md-9 cart-item p-2  justify-content-center">
+           
+                <p><%=cart[productAdded].name%> Added to Cart <span></span></p>
           
+            
+            
         </div>
-    </footer>
+        </div>
 
-</body>
+        <div class="summary-order">
+            <h4>Cart Subtotal: $<%= subtotal%></h4>
+            <button><a href="/orders"></a>Proceed to Checkout (<%=itemsTotal%> items) </button>
+            <button><a href="/cart">Go to Cart</a></button>
+        </div>
+    </div>
 
-<script>
-    function addToCart(productId, productName, productPrice, productImage) {
-    // Send AJAX request to server to add product to cart
-    fetch('/addToCart', {
-        method: 'POST',
-        body: JSON.stringify({ 
-            productId: productId,
-            productName: productName,
-            productPrice: productPrice,
-            productImage: productImage
-        }),
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })
-    .then(response => response.json())
-    .then(data => {
-        // Handle response (optional)
-        console.log(data);
-    })
-    .catch(error => console.error('Error:', error));
-}
 
-</script>
 
 </html>

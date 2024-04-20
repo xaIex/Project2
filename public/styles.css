@@ -24,6 +24,7 @@ body{
     margin-right: 80px;
     text-transform: uppercase;
     font-size: 1rem;
+    
 }
 .navbar-brand{
     font-size: 1.5rem;
@@ -36,7 +37,7 @@ body{
 }
 
 .icon{
-    color: black;
+    color:  #363636;
     font-size: 30px;
 }
 .design{
@@ -68,7 +69,7 @@ body{
 }
 #home{
     color: white;
-    background-color: #28242c;
+    background-color: #363636;
     display: inline-block;
     border-radius: 3px;
 }
@@ -81,11 +82,16 @@ body{
 }
 #shop{
     color: black;
+    margin-right: -2px;
+}
+.shop{
+    color: black;
+    margin-left: -2px;
 }
 
 #shop:hover{
     color: white;
-    background: #28242c;
+    background:  #363636;
     display: inline-block;
     border-radius: 3px;
     transition: 1000ms;
@@ -94,9 +100,13 @@ body{
 #account{
     color: black;
 }
+.account {
+    color: black;
+    margin-right: 115px;
+}
 #account:hover{
     color: white;
-    background: #28242c;
+    background:  #363636;
     display: inline-block;
     border-radius: 3px;
     transition: 1000ms;
@@ -127,7 +137,7 @@ transition : 1000ms;
 transform: translateY(0);
 background-color: black;
     color: white;
-    border-radius: 1px;
+    border-radius: 8px;
     border: none;
     outline: none;
     font-weight: 500;
@@ -175,17 +185,26 @@ a{
     /* Add any other styling properties as needed */
     border: 2px solid;
     border-color: #eeeeee;
+    margin-left: 20px;
+    
+}
+.cart-product{
+    margin-left: 20px;
 }
 
 .cart-item{
     display: flex;
     align-items: center;
     flex-direction: row;
-    
+    border-radius: 10px;
     background-color: #eeeeee;
 
     background-image:  repeating-radial-gradient( circle at 0 0, transparent 0, #eeeeee 6px ), repeating-linear-gradient( #ffffff55, #ffffff );
 
+
+}
+.order-total{
+    background-image:  repeating-radial-gradient( circle at 0 0, transparent 0, #eeeeee 6px ), repeating-linear-gradient( #ffffff55, #ffffff );
 
 }
 
@@ -214,4 +233,154 @@ a{
     border-radius: 5px;
     
    
+}
+.product-title{
+    color: #6ec6f0;
+}
+
+.checkmark{
+    color: rgb(2, 189, 2);
+}
+.checkout{
+    background-color: rgb(243, 243, 243);
+    border: 2px solid;
+    border-color: rgb(223, 223, 223);
+    border-radius: 10px;
+    height: 300px;
+}
+
+.order-thank {
+    color: #6ec6f0;
+}
+
+.order-thank:hover{
+    transition: 1000ms;
+    color: black;
+    font-size: 3rem;
+    cursor: pointer;
+}
+
+/* CSS */
+.button-13 {
+  background-color: #fff;
+  border: 1px solid #d5d9d9;
+  border-radius: 8px;
+  box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0;
+  box-sizing: border-box;
+  color: #0f1111;
+  cursor: pointer;
+  display: inline-block;
+  
+  font-size: 13px;
+  line-height: 29px;
+  padding: 0 10px 0 11px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+  width: 100px;
+}
+
+
+.button-13:hover {
+  background-color: #f7fafa;
+}
+
+.button-13:focus {
+  border-color: #008296;
+  box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0;
+  outline: 0;
+}
+
+.button-14 {
+    background-color: #fff;
+    border: 1px solid #d5d9d9;
+    border-radius: 10px;
+    box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0;
+    box-sizing: border-box;
+    color: #0f1111;
+    cursor: pointer;
+    display: inline-block;
+    
+    font-size: 13px;
+    line-height: 29px;
+    padding: 0 10px 0 11px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: middle;
+    
+  }
+  
+  
+  .button-14:hover {
+    background-color: #f7fafa;
+  }
+  
+  .button-14:focus {
+    border-color: #008296;
+    box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0;
+    outline: 0;
+  }
+
+
+
+/* CSS */
+.button-45 {
+  
+  background-color: #FFE7E7;
+  background-position: 0 0;
+  border: 1px solid #FEE0E0;
+  border-radius: 11px;
+ 
+  color: #D33A2C;
+  cursor: pointer;
+ 
+  font-size: 1rem;
+ 
+  line-height: 33.4929px;
+  list-style: outside url(https://www.smashingmagazine.com/images/bullet.svg) none;
+  padding: 2px 12px;
+  text-align: left;
+  text-decoration: none;
+  text-shadow: none;
+  text-underline-offset: 1px;
+  transition: border .2s ease-in-out,box-shadow .2s ease-in-out;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  word-break: break-word;
+}
+
+.button-45:active,
+.button-45:hover,
+.button-45:focus {
+  outline: 0;
+}
+
+
+.button-45:active {
+  background-color: #D33A2C;
+  box-shadow: rgba(0, 0, 0, 0.12) 0 1px 3px 0 inset;
+  color: #FFFFFF;
+}
+
+.button-45:hover {
+  background-color: #FFE3E3;
+  border-color: #FAA4A4;
+}
+
+.button-45:active:hover,
+.button-45:focus:hover,
+.button-45:focus {
+  background-color: #D33A2C;
+  box-shadow: rgba(0, 0, 0, 0.12) 0 1px 3px 0 inset;
+  color: #FFFFFF;
 }

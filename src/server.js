@@ -4,7 +4,9 @@ const bycrpt = require('bcrypt');
 const session = require('express-session');
 const MongoDBStore = require("connect-mongodb-session")(session);
 const User = require('../models/config');
+const Order = require('../models/orderModel')
 const userRoute = require('../routes/userRoutes');
+const cartRoute = require('../routes/cartRoutes')
 
 const app = express();
 // Set up MongoDB session store
@@ -44,38 +46,7 @@ mongoose.connect('mongodb+srv://xcastillo2001:Sq5lBuispIryiMpf@project2.qadwpbn.
 })
 
 app.use('/users', userRoute);
-
-
-app.post('/addToCart', (req, res) => {
-    const { productId, productName, productPrice, productImage } = req.body; // details in the request body
-
-    // Create a new item object with product details
-    const newItem = {
-        id: productId,
-        name: productName,
-        price: productPrice,
-        image: productImage,
-        quantity: 1 // Assuming the initial quantity is 1
-    };
-
-    // Initialize the cart in the session if it doesn't exist
-    req.session.cart = req.session.cart || [];
-
-    // Check if the item is already in the cart
-    const existingItemIndex = req.session.cart.findIndex(item => item.id === productId);
-    if (existingItemIndex !== -1) {
-        // If the item is already in the cart, increment its quantity
-        req.session.cart[existingItemIndex].quantity++;
-    } else {
-        // If the item is not in the cart, add it
-        req.session.cart.push(newItem);
-    }
-
-    // Send a response (you may redirect the user to the cart page or send a JSON response)
-    console.log(req.session.cart);
-    res.send('Item added to cart successfully'); // some how important to display the items in the cart, figure out why later
-   
-});
+app.use('/cart', cartRoute);
 
 app.post('/remove-from-cart', (req, res) => {
     const { productId } = req.body;
@@ -170,6 +141,11 @@ app.get('/product2Page', (req,res) =>{
 app.get('/product3Page', (req,res) =>{
     res.render('productPage/product3Page.ejs');
 });
+
+app.get('/productCart', (req,res) => {
+    const cart = req.session.cart || [];
+    res.render('addProductCartPage.ejs', { cart, recentlyAddedItem });
+});
 /*
 app.get('/orders',(req,res) => {
     try{
@@ -188,12 +164,81 @@ app.get('/profile', isAuth, (req,res) => {
 app.get('/orders', isAuth, (req,res) => {
     const user = req.session.user; // loginAccount in userController.js
     const cart = req.session.cart || [];
-    const shippingVal = req.query.shipping || 0;
-
  
     console.log(user);
-    res.render('orders.ejs', {user, cart, shippingVal});
+    res.render('orders.ejs', {user, cart});
 });
+
+app.get('/storeOrder', (req,res) => {
+    const cart = req.session.cart || [];
+    const userOrder = req.session.user;
+    res.render('storeOrder.ejs', {cart, userOrder});
+});
+
+app.post('/submitOrder', async (req,res) => {
+    const { firstname, lastname, phone, street, zip, city, state, cardnumber, expiry, cvv, ordertotal} = req.body;
+    
+    const userId = req.session.user.id; // get the user id, the user that is logged in, this will create a link between the order and the user
+    req.session.user.firstname1 = firstname;  // set the name the user entered in the user session to display their name 
+    const cart = req.session.cart || [];
+    console.log(userId); // check if its correct userId
+    const order = new Order({
+        user: userId, // referencing the user id, the infomation will be with this user 
+        name: {
+            firstName: firstname,
+            lastName: lastname
+        },
+        items: cart.map(item => ({ //stores the products the user ordered in the database
+            productName: item.name,
+            productPrice: item.price,
+            productQuantity: item.quantity
+        })),
+        
+        billingInfo: {
+            billAddress: street,
+            billPhone: phone,
+            billZip: zip,
+            billCity: city,
+            billState: state
+        },
+
+        paymentInfo: {
+            cardNumber: cardnumber,
+            cardExpiry: expiry,
+            cardCVV: cvv
+        },
+
+        orderTotal: ordertotal,
+
+
+    });
+
+    await order.save();
+
+    res.redirect('/storeOrder');
+});
+
+app.get('/myOrders', async (req, res) => {
+    try {
+        // Get the user ID from the session
+        const userId = req.session.user._id;
+
+        // Query the database for orders associated with the user
+        const orders = await Order.find({ user: userId });
+
+        // Log the user details and orders
+        console.log('User ID:', userId);
+        console.log('Orders:', orders);
+
+        // Send the orders back to the client
+        res.json(orders);
+    } catch (error) {
+        console.error('Error fetching orders:', error);
+        res.status(500).send('Error fetching orders');
+    }
+});
+
+
 
 app.post('/logout', (req,res) => {
     req.session.destroy((err) => {
