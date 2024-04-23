@@ -57,6 +57,10 @@ app.get('/account',(req,res) => {
 app.get('/test', isAuth, (req,res) => {
     res.render('test.ejs');
 });
+app.post('/addToCart', addToCart); // Route to add an item to the cart
+app.get('/cart', isAuth, viewCart); // Route to view the cart
+app.post('/removeFromCart', removeFromCart); // Route to remove an item from the cart
+app.post('/checkout', checkout); // Route to process checkout
 
 /*
 app.post('/createAccount', async (req,res) => {
@@ -144,3 +148,5 @@ app.listen(3000, () => {
         console.log('Error creating user:', error);
         res.status(500).send('Error creating user'); // Send error response to client
     }*/
+
+    

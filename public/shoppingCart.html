@@ -48,17 +48,13 @@
                     <li class="nav-item account">
                         <a href="account.html" id="account" class="nav-link">Account</a>
                     </li>
-                    
+                    <li class="nav-item"> <!-- Move the cart link inside the ul -->
+                        <a href="shoppingCart.html" id="cart" class="nav-link">Shopping Cart</a>
+                    </li>
                 </ul>
                 <a href="#"><i class="fa-solid fa-bag-shopping icon"></i></a>
-                <li class="nav-item">
-                    <a href="shoppingCart.html" id="cart" class="nav-link">Shopping Cart</a>
-                </li>
-             
            </div>
         </div>
-     
-       
     </nav>
     <div class="container-fluid bg-dark">
         <div class="row text-lowercase p-2 design">
@@ -81,32 +77,12 @@
         </tr>
       </thead>
       <tbody>
-        <% cart.forEach(item => { %>
-          <tr>
-            <td><img src="<%= item.imageUrl %>" alt="<%= item.name %>" width="50"></td>
-            <td><%= item.name %></td>
-            <td>$<%= item.price.toFixed(2) %></td>
-            <td>
-              <form action="/cart/update" method="POST">
-                <input type="hidden" name="productId" value="<%= item._id %>">
-                <input type="number" name="quantity" value="<%= item.quantity %>" min="1">
-                <button type="submit">Update</button>
-              </form>
-            </td>
-            <td>$<%= (item.price * item.quantity).toFixed(2) %></td>
-            <td>
-              <form action="/cart/remove" method="POST">
-                <input type="hidden" name="productId" value="<%= item._id %>">
-                <button type="submit">Remove</button>
-              </form>
-            </td>
-          </tr>
-        <% }); %>
+        <!-- JavaScript logic for populating cart items should go here -->
       </tbody>
       <tfoot>
         <tr>
           <td colspan="4"><strong>Total:</strong></td>
-          <td>$<%= totalPrice.toFixed(2) %></td>
+          <td>$<!-- JavaScript logic for calculating total should go here --></td>
           <td></td>
         </tr>
       </tfoot>
@@ -114,3 +90,4 @@
 
 </body>
 </html>
+
