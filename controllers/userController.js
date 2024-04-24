@@ -29,7 +29,7 @@ const registerAccount = async (req,res) =>{
             newUser.password = hashPassword;
             await newUser.save(); // save user to database
             console.log(newUser);
-            res.redirect("/account");
+            res.redirect("/account.html");
         }
 
     }catch (error){
@@ -43,13 +43,13 @@ const loginAccount = async (req,res) =>{
 
     const existingUser = await User.findOne({email});
     if(!existingUser){
-        return res.redirect('/account');
+        return res.redirect('/account.html');
     }
 
     const isMatch = await bycrpt.compare(pswd, existingUser.password);    
 
     if(!isMatch){
-        return res.redirect('/account');
+        return res.redirect('/account.html');
     }
     req.session.isAuth = true;
     req.session.user = {
@@ -63,11 +63,19 @@ const loginAccount = async (req,res) =>{
         password: existingUser.password  // same with with password, we called it pswd intially in the html but we set it to password in the registerAccount 
 
     }
-    res.redirect('/home')
+    res.redirect('/shop.html');
+    
 };
 
+const logoutAccount = (req,res) => {
+    req.session.destroy((err) => {
+        if(err) throw err;
+        res.redirect('/createAccount.html');
+    });
+};
 
 module.exports = {
     registerAccount,
-    loginAccount
+    loginAccount,
+    logoutAccount
 }

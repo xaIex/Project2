@@ -33,9 +33,10 @@
         </div>
     </div>
 
+   
     <nav class="navbar navbar-expand-md bg-white navbar-dark p-3">
         <div class="container">
-           <a href="/mainShop/home.html" class="navbar-brand text-lowercase"><span><i class="fa-brands fa-atlassian" style="color: #363636;"></i></span>Alex Studios</a>
+           <a href="../home.html" class="navbar-brand text-lowercase"><span><i class="fa-brands fa-atlassian" style="color: #535353;"></i></span>Alex Studios</a>
 
            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
            data-bs-target="#navmenu"><span class="navbar-toggler-icon bg-dark"></span></button>
@@ -43,23 +44,22 @@
            <div class="collapse navbar-collapse" id="navmenu">
                 <ul class="navbar-nav mx-auto my-2 my-lg-0">
                     <li class="nav-item">
-                        <a href="../home.html" id="home" class="nav-link active">Home</a>
+                        <a href="../home.html" id="" class="nav-link home-button">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a href="../shop.html" id="shop" class="nav-link shop">Shop</a>
+                        <a href="../shop.html" id="shop" class="nav-link shop-button">Shop</a>
                     </li>
-                    <li class="nav-item account">
-                        <a href="../account.html" id="account" class="nav-link">Account</a>
+                    <li class="nav-item ">
+                        <a href="../account.html" id="account" class="nav-link account">Account</a>
                     </li>
                     
                 </ul>
-                <a href="/cart"><i class="fa-solid fa-bag-shopping icon bag"></i></a>
+                <a href="/cart/cartContents"><i class="fa-solid fa-bag-shopping icon bag"></i></a>
              
            </div>
         </div>
-     
-       
     </nav>
+
     <div class="container-fluid bg-dark">
         <div class="row text-lowercase p-2 design">
             <div class="col-4 text-white"><span class="name1">alex castillo</span></div>
@@ -72,7 +72,7 @@
         <h1 class="text-center order-thank">Thank You <%= userOrder.firstname1 %> For Your Order!</h1>
         <hr>
     </div>
-    <div class=" container checkout-overview card col-md-4">
+    <div class="container checkout-overview card col-md-4">
         <% let subtotal = 0; %>
             <% let itemsTotal = 0; %>
             <% let tax = 0; %>
@@ -83,37 +83,65 @@
               <% cart.forEach(item => { %>
                 <div class="cart-item p-3">
                   <img src="<%= item.image %>" alt="<%= item.name %>" class="cart-item-image img-fluid card p-1">
-                  <div class="p-2">
+                  <div class="p-2 ">
                     <h4><%= item.name %></h4>
-                    <p>Price: $<%= item.quantity * item.price %></span></p>
-                    <p>Quantity:<%= item.quantity %></p>
+                    <p><strong>Price:</strong> $<%= item.quantity * item.price %></span></p>
+                    <p><strong>Quantity: </strong><%= item.quantity %></p>
+                    <p> <strong>Size:</strong> <%= item.size %></span></p>
                   </div>
                 </div>
                 <% subtotal += item.quantity * item.price; %>
                 <% itemsTotal += item.quantity %>
               <% }); %>
-            </div>\
+            </div>
+            <div class="p-2"></div>
 
-            <div class="card order-total ">
+            <div class="card order-total p-2">
                 <div class="summary-title d-flex justify-content-between m-3 mb-1">
                     <h5 class="text-center">Order Total</h5>
                     <h5> <strong><%= itemsTotal %></strong> Item(s)</h5>
                 </div>
                 <hr>
-                <div class="summary-content text-center">
+                <div class="summary-content text-center m-2">
                   
                     <% tax = itemsTotal * 0.75 %>
-                    <p>Tax: $<%= tax %></p>
+                    <p><strong>Tax:</strong> $<%= tax %></p>
                     
-                    <p>Shipping: $12.99</p> <!-- Display shipping cost -->
+                    <p><strong>Shipping:</strong> $12.99</p> <!-- Display shipping cost -->
                     <% total = subtotal + tax + 12.99 %> <!-- Add shipping cost to the total -->
                     <p><strong style="font-size: x-large; color: #6ec6f0;">Order Total: $<%= total %></strong></p> <!-- Display total -->
                     
                 </div>
-                </div>
+            </div>
+            <div class="p-2"></div>
     </div>
+    <div class="p-2"></div>
     
-
+    <div class="container-fluid bg-dark">
+        <div class="row text-lowercase p-2 design">
+            <div class="col-4 text-white"><span class="name1">alex studios</span></div>
+            <div class="col-4 text-white text-center">alex studios</div>
+            <div class="col-4 text-white text-end">alex studios</div>
+        </div>
+    </div>
+        <footer class="footer">
+            <div class="container-fluid bg-dark">
+                <div class="row p-4">
+                    <hr>
+                    <h4>Contact Us</h4>
+                    <ul>
+                        <li>Address: 123 Main Street, City, Country</li>
+                        <li>Phone: +1 (123) 456-7890</li>
+                        <li>Email: xcastillo2001@gmail.com</li>
+                    </ul>
+                    <hr>
+                </div>
+                <div class="row">
+                    <div class="col-4 p-2 design">Copyright &copy; 2024 alex studios., Ltd All rights reserved</div>
+                </div>
+              
+            </div>
+        </footer>
 </body>
 
 </html>  

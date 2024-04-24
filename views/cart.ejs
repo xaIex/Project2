@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>alex studios</title>
-
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
     <!-- Latest compiled and minified CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -28,44 +28,43 @@
 <body>
   <div class="container-fluid bg-white">
     <div class="row text-lowercase p-2 design">
-        <div class="col-4 text-black">alex castillo</div>
-        <div class="col-4 text-black text-center">Alex castillo</div>
-        <div class="col-4 text-black text-end">alex castillo</div>
+        <div class="col-4 text-black">alex studios</div>
+        <div class="col-4 text-black text-center">Alex studios</div>
+        <div class="col-4 text-black text-end">alex studios</div>
     </div>
 </div>
 
 <nav class="navbar navbar-expand-md bg-white navbar-dark p-3">
-    <div class="container">
-       <a href="/mainShop/home.html" class="navbar-brand text-lowercase">Alex Studios</a>
+  <div class="container">
+     <a href="../home.html" class="navbar-brand text-lowercase"><span><i class="fa-brands fa-atlassian" style="color: #535353;"></i></span>Alex Studios</a>
 
-       <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-       data-bs-target="#navmenu"><span class="navbar-toggler-icon bg-dark"></span></button>
+     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+     data-bs-target="#navmenu"><span class="navbar-toggler-icon bg-dark"></span></button>
 
-       <div class="collapse navbar-collapse" id="navmenu">
-            <ul class="navbar-nav m-auto my-2 my-lg-0">
-                <li class="nav-item">
-                    <a href="../home.html" id="home" class="nav-link active">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a href="../shop.html" id="shop" class="nav-link">Shop</a>
-                </li>
-                <li class="nav-item account">
-                    <a href="../account.html" id="account" class="nav-link">Account</a>
-                </li>
-                
-            </ul>
-            <a href="/cart"><i class="fa-solid fa-bag-shopping icon bag"></i></a>
-         
-       </div>
-    </div>
- 
-   
+     <div class="collapse navbar-collapse" id="navmenu">
+          <ul class="navbar-nav mx-auto my-2 my-lg-0">
+              <li class="nav-item">
+                  <a href="../home.html" id="" class="nav-link home-button">Home</a>
+              </li>
+              <li class="nav-item">
+                  <a href="../shop.html" id="shop" class="nav-link shop-button">Shop</a>
+              </li>
+              <li class="nav-item ">
+                  <a href="../account.html" id="account" class="nav-link account">Account</a>
+              </li>
+              
+          </ul>
+          <a href="/cart/cartContents"><i class="fa-solid fa-bag-shopping icon bag"></i></a>
+       
+     </div>
+  </div>
 </nav>
+
 <div class="container-fluid bg-dark">
     <div class="row text-lowercase p-2 design">
-        <div class="col-4 text-white"><span class="name1">alex castillo</span></div>
-        <div class="col-4 text-white text-center">Alex castillo</div>
-        <div class="col-4 text-white text-end">alex castillo</div>
+        <div class="col-4 text-white"><span class="name1">alex studios</span></div>
+        <div class="col-4 text-white text-center">Alex studios</div>
+        <div class="col-4 text-white text-end">alex studios</div>
     </div>
 </div>
 
@@ -90,20 +89,20 @@
     <% let subtotal = 0; %>
     <div class="col-md-8"> 
       <% cart.forEach(item => { %>
-        <div class="cart-item ">
+        <div class="cart-item">
           <img src="<%= item.image %>" alt="<%= item.name %>" class="cart-item-image img-fluid p-1 card">
           <div class="p-2 cart-product">
-            <h4><%= item.name %></h4>
+            <h4 style="color:#6ec6f0 ;"><%= item.name %></h4>
             <p> <strong>Price:</strong> $<%= item.quantity * item.price %></span></p>
             <p><strong>Quantity:</strong>
               <button class="button-14" onclick="decreaseQuantity('<%= item.id %>')">-</button>
               <span class="quantity"><%= item.quantity %></span>
               <button class="button-14" onclick="increaseQuantity('<%= item.id %>')">+</button>
             </p>
+            <p><strong>Size:</strong> <%= item.size %></span></p>
             <button class="button-13" onclick="removeItem('<%= item.id %>')">Remove</button>
-            
-
-            
+        
+           
           </div>
         </div>
         <% subtotal += item.quantity * item.price; %>
@@ -114,8 +113,8 @@
         <div class="checkout col-md-4 text-center">
         <h4 class="m-3">Subtotal: $<%= subtotal %></h4>
         <hr>
-        <button class="btn m-5"><a href="/orders">Proceed to checkout</a></button>
-        <form action="/clearCart" method="POST" class="p-2">
+        <button class="btn m-5"><a href="/order/orderPage">Proceed to checkout</a></button>
+        <form action="/cart/clearCartContents" method="POST" class="p-2">
           <button type="submit" class="button-45">Clear Cart</button>
         </form>
       <% } %>
@@ -124,42 +123,10 @@
   </div>
   </div>
 
-
-
-  <footer class="footer">
-    <div class="container-fluid bg-dark">
-        <div class="row text-lowercase p-2 design">
-            <div class="col-4 text-white"><span class="name1">alex castillo</span></div>
-            <div class="col-4 text-white text-center">Alex castillo</div>
-            <div class="col-4 text-white text-end">alex castillo</div>
-        </div>
-    </div>
-    <div class="container-fluid bg-dark">
-        <div class="row p-4">
-            <hr>
-            <h4>Contact Us</h4>
-            <ul>
-                <li>Address: 123 Main Street, City, Country</li>
-                <li>Phone: +1 (123) 456-7890</li>
-                <li>Email: xcastillo2001@gmail.com</li>
-            </ul>
-            <hr>
-        </div>
-        <div class="row">
-            <div class="col-4 p-2 design">Copyright &copy; 2024 alex studios., Ltd All rights reserved</div>
-        </div>
-      
-    </div>
-</footer>
-
-
-</body>
-
-
 <script>
   function removeItem(productId) {
     // Send AJAX request to server to remove the item from the cart
-    fetch('/remove-from-cart', {
+    fetch('/cart/removeProduct', {
         method: 'POST',
         body: JSON.stringify({ productId }),
         headers: {
@@ -168,7 +135,7 @@
     })
     .then(response => response.json())
     .then(data => {
-        // Handle response (optional)
+    
         console.log(data);
         // Reload the page or update the cart display as needed
         location.reload(); // Reload the page to reflect the updated cart
@@ -176,7 +143,7 @@
     .catch(error => console.error('Error:', error));
 }
 
-function decreaseQuantity(productId) {
+    function decreaseQuantity(productId) {
         // Send AJAX request to server to decrease item quantity in the cart
         updateQuantity(productId, -1);
     }
@@ -188,7 +155,7 @@ function decreaseQuantity(productId) {
 
     function updateQuantity(productId, change) {
         // Send AJAX request to server to update item quantity in the cart
-        fetch('/update-cart-quantity', {
+        fetch('/cart/updateProduct', {
             method: 'POST',
             body: JSON.stringify({ productId, change }),
             headers: {
@@ -205,4 +172,5 @@ function decreaseQuantity(productId) {
         .catch(error => console.error('Error:', error));
     }
 </script>
+</body>
 </html>

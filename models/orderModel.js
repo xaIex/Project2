@@ -9,11 +9,12 @@ const orderSchema = new mongoose.Schema(
         items: [{
             productName: String,
             productPrice: Number,
-            productQuantity: Number
+            productQuantity: Number,
+            productSize: String
         }],
 
         name: {
-            firstName: String, 
+            firstName:String,
             lastName: String
         },
         

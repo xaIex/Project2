@@ -33,30 +33,28 @@
 
     <nav class="navbar navbar-expand-md bg-white navbar-dark p-3">
         <div class="container">
-           <a href="home.html" class="navbar-brand text-lowercase">Alex Studios</a>
+           <a href="home.html" class="navbar-brand text-lowercase"><span><i class="fa-brands fa-atlassian" style="color: #535353;"></i></span>Alex Studios</a>
 
            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
            data-bs-target="#navmenu"><span class="navbar-toggler-icon bg-dark"></span></button>
     
            <div class="collapse navbar-collapse" id="navmenu">
-                <ul class="navbar-nav m-auto my-2 my-lg-0">
+                <ul class="navbar-nav mx-auto my-2 my-lg-0">
                     <li class="nav-item">
-                        <a href="home.html" id="home" class="nav-link active">Home</a>
+                        <a href="home.html" id="" class="nav-link home-button">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a href="shop.html" id="shop" class="nav-link">Shop</a>
+                        <a href="shop.html" id="" class="nav-link shop">Shop</a>
                     </li>
-                    <li class="nav-item account">
-                        <a href="account.html" id="account" class="nav-link">Account</a>
+                    <li class="nav-item ">
+                        <a href="account.html" id="" class="nav-link account-button">Account</a>
                     </li>
                     
                 </ul>
-                <a href="#"><i class="fa-solid fa-bag-shopping icon"></i></a>
+                <a href="/cart/cartContents"><i class="fa-solid fa-bag-shopping icon bag"></i></a>
              
            </div>
-        </div>
-     
-       
+        </div>  
     </nav>
     <div class="container-fluid bg-dark">
         <div class="row text-lowercase p-2 design">
@@ -70,7 +68,7 @@
     <div class="container mt-3 col-md-4">
 
         <h2>Create Account</h2>
-        <form action="/" method="post" onsubmit="return validateForms()">
+        <form action="/users/createAccount" method="post" onsubmit="return validateForms()">
           <div class="mb-3 mt-3 was-validated">
             <label for="email">Email: <span style="color:red">*</span></label>
             <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" required>
@@ -113,7 +111,7 @@
         </div>
         
           <div class="d-flex justify-content-between">
-            <button type="submit" class="btn btn-primary">Submit</button>  
+            <button class="btn btn-primary">Submit</button>  
           </div>
         </form>
      

@@ -67,6 +67,16 @@ body{
     font-size: small;
     
 }
+.home-button{
+    color: black;
+}
+.home-button:hover{
+    color: white;
+    background:  #363636;
+    display: inline-block;
+    border-radius: 3px;
+    transition: 1000ms;
+}
 #home{
     color: white;
     background-color: #363636;
@@ -80,16 +90,26 @@ body{
     border-radius: 3px;
     transition: 1000ms;
 }
-#shop{
-    color: black;
-    margin-right: -2px;
+
+.shop-button{
+    color: white;
+    background-color: #363636;
+    display: inline-block;
+    border-radius: 3px;
+}
+.shop-button:hover{
+    color:black;
+    background-color: white;
+    display: inline-block;
+    border-radius: 3px;
+    transition: 1000ms;
 }
 .shop{
     color: black;
     margin-left: -2px;
 }
 
-#shop:hover{
+.shop:hover{
     color: white;
     background:  #363636;
     display: inline-block;
@@ -100,9 +120,23 @@ body{
 #account{
     color: black;
 }
+.account-button{
+    color: white;
+    background-color: #363636;
+    display: inline-block;
+    border-radius: 3px;
+    margin-right: 29px;
+}
+.account-button:hover{
+    color:black;
+    background-color: white;
+    display: inline-block;
+    border-radius: 3px;
+    transition: 1000ms;
+}
 .account {
     color: black;
-    margin-right: 115px;
+    margin-right: 29px;
 }
 #account:hover{
     color: white;
@@ -160,7 +194,7 @@ border: solid 2px #6ec6f0;
 
 
 .bg-image {
-    background-image: url("homeimg.png"); /* Specify your image URL */
+    background-image: url("/images/homeimg.png"); /* Specify your image URL */
     background-size: cover;
     background-position: center; /* Align bottom of image with bottom of container */
     min-height: 85vh; /* Set minimum height of container to full viewport height */
@@ -233,6 +267,23 @@ a{
     border-radius: 5px;
     
    
+}
+
+.summary-order-productadd{
+    width: 350px; /* Set width of the fixed box */
+    height: 267px;
+    position: fixed; 
+    top: 10rem; /* Position from the top */
+    right: 80px; /* Position from the right */
+    bottom: 100px; /* Position from the bottom */
+    background-color: rgb(243, 243, 243);
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.slideProducts{
+    width: 400px;
+    margin-bottom: 20px;
 }
 .product-title{
     color: #6ec6f0;

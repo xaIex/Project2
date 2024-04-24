@@ -25,50 +25,48 @@
 <body>
     <div class="container-fluid bg-white">
         <div class="row text-lowercase p-2 design">
-            <div class="col-4 text-black">alex castillo</div>
-            <div class="col-4 text-black text-center">Alex castillo</div>
-            <div class="col-4 text-black text-end">alex castillo</div>
+            <div class="col-4 text-black">alex studios</div>
+            <div class="col-4 text-black text-center">Alex studios</div>
+            <div class="col-4 text-black text-end">alex studios</div>
         </div>
     </div>
 
     <nav class="navbar navbar-expand-md bg-white navbar-dark p-3">
         <div class="container">
-           <a href="home.html" class="navbar-brand text-lowercase">Alex Studios</a>
+           <a href="home.html" class="navbar-brand text-lowercase"><span><i class="fa-brands fa-atlassian" style="color: #535353;"></i></span>Alex Studios</a>
 
            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
            data-bs-target="#navmenu"><span class="navbar-toggler-icon bg-dark"></span></button>
     
            <div class="collapse navbar-collapse" id="navmenu">
-                <ul class="navbar-nav m-auto my-2 my-lg-0">
+                <ul class="navbar-nav mx-auto my-2 my-lg-0">
                     <li class="nav-item">
-                        <a href="home.html" id="home" class="nav-link active">Home</a>
+                        <a href="home.html" id="" class="nav-link home-button">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a href="shop.html" id="shop" class="nav-link">Shop</a>
+                        <a href="shop.html" id="" class="nav-link shop">Shop</a>
                     </li>
-                    <li class="nav-item account">
-                        <a href="#" id="account" class="nav-link">Account</a>
+                    <li class="nav-item ">
+                        <a href="#" id="" class="nav-link account-button">Account</a>
                     </li>
                     
                 </ul>
-                <a href="#"><i class="fa-solid fa-bag-shopping icon"></i></a>
+                <a href="/cart/cartContents"><i class="fa-solid fa-bag-shopping icon bag"></i></a>
              
            </div>
-        </div>
-     
-       
+        </div>  
     </nav>
     <div class="container-fluid bg-dark">
         <div class="row text-lowercase p-2 design">
-            <div class="col-4 text-black"><span class="name1">alex castillo</span></div>
-            <div class="col-4 text-white text-center">Alex castillo</div>
-            <div class="col-4 text-white text-end">alex castillo</div>
+            <div class="col-4 text-white"><span class="name1">alex studios</span></div>
+            <div class="col-4 text-white text-center">Alex studios</div>
+            <div class="col-4 text-white text-end">alex studios</div>
         </div>
     </div>
 
     <div class="container mt-3 col-md-4">
         <h2>Login</h2>
-        <form action="/action_page.php" onsubmit="return validateForms()">
+        <form action="/users/account" method="post" onsubmit="return validateForms()">
           <div class="mb-3 mt-3">
             <label for="email">Email:</label>
             <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
@@ -84,9 +82,14 @@
           </div>
           <div class="d-flex justify-content-between">
             <button type="submit" class="btn btn-primary">Submit</button>
-            <a href="/createAccount" class="create-acct">Create Account</a>
+            <p>Don't Have an Account? <a href="/createAccount.html" class="create-acct">Create Account</a></p>
           </div>
+       
         </form>
+        <form action="/users/logout" method="post">
+            <button type="submit" class="btn btn-primary">Logout</button>
+        </form>
+
       </div>
       <script src="script.js"></script>
 </body>
