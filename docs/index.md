@@ -2,17 +2,20 @@
 <p></p>Welcome to alex studios! a clothing platform </p>
 
 
-
+# public folder
  ## home.html
-The HTML document defines the structure of a landing page for Alex Studios website. It starts with the inclusion of necessary meta tags for character encoding and viewport settings. The page incorporates Bootstrap framework for responsive design, including both CSS and JavaScript files. Custom fonts from Google Fonts and icons from Font Awesome are utilized throughout the page. The main content is organized into sections: a navigation bar for easy site navigation, a header section featuring the studio's branding, a main section with a call-to-action and imagery, a product section showcasing new arrivals, and a footer containing contact information and copyright details. Each section is styled with custom classes defined in an external stylesheet. The document aims to provide a visually appealing and user-friendly interface for visitors to explore Alex Studios' products and services.
+The HTML document defines the structure of a landing page for Alex Studios website. It starts with the inclusion of necessary meta tags for character encoding and viewport settings. The page incorporates Bootstrap framework for responsive design, including both CSS and JavaScript files. Custom fonts from Google Fonts and icons from Font Awesome are utilized throughout the page. The main content is organized into sections: a navigation bar for easy site navigation, a header section featuring the studio's branding, a main section with a our goals as a company and imagery, a product section showcasing new arrivals, and a footer containing contact information and copyright details. Each section is styled with custom classes defined in an external stylesheet. The document aims to provide a visually appealing and user-friendly interface for visitors to explore Alex Studios' products and services. Additionally, custom fonts from Google Fonts and icons from Font Awesome are included.
 
-createAccount.html
-The HTML document is a webpage designed for user account creation on the Alex Studios website. It begins with standard meta tags for character encoding and viewport settings. The page imports Bootstrap CSS and JavaScript files from a CDN for styling and interactivity. Additionally, custom fonts from Google Fonts and icons from Font Awesome are included. The main content is organized into sections: a navigation bar for site navigation, a form section for creating a user account, and a footer section containing contact information and copyright details. The form includes fields for email, password, phone number, street address, zip code, city, and state, with validation for required fields. JavaScript functionality for form validation is referenced in an external script file named "script.js." Overall, the webpage aims to provide a user-friendly interface for visitors to create accounts with Alex Studios.
+## createAccount.html
+The HTML document is a webpage designed for user account creation on the Alex Studios website. It begins with standard meta tags for character encoding and viewport settings. The page imports Bootstrap CSS and JavaScript files from a CDN for styling and interactivity. The main content is organized into sections: a navigation bar for site navigation, a form section for creating a user account, and a footer section containing contact information and copyright details. The form includes fields for email, password, phone number, street address, zip code, city, and state, with validation for required fields. JavaScript functionality for form validation is by linking a javascript file, "script.js". After the user successfully enters valid infomation it is stored in the MongoDB database. Overall, the webpage aims to provide a user-friendly interface for visitors to create accounts with Alex Studios.
 
-shop.html
-This HTML document serves as the main webpage for Alex Studios, focusing on showcasing their collection of products. The page begins with standard meta tags and includes a favicon for the website. It imports Bootstrap CSS and JavaScript files from a CDN for styling and interactivity. Custom fonts from Google Fonts and icons from Font Awesome are also included. The main content is structured into sections: a header with the Alex Studios logo and navigation bar, followed by sections displaying product cards categorized into rows. Each product card includes an image, title, and price, linking to individual product pages. The page concludes with a footer containing contact information and copyright details. Overall, the webpage aims to provide an attractive and organized layout for users to browse and explore the Alex Studios product collection.
+## account.html
+This HTML document provides the user with a form for login. It asks the email and the password they entered in the createAccount.html file. It also uses the script.js file to valid the form and most importantly on the serverside, checks if the user exist or not in the database. After the user is logged in successfully, they will be redirected to the shop.html page and the session will be created and ready for data. 
 
-productPage.html
+## shop.html
+This HTML document serves as the main webpage for Alex Studios, focusing on showcasing their collection of products. The main content is structured into sections: a header with the Alex Studios logo and navigation bar, followed by sections displaying product cards categorized into rows. Each product card includes an image, title, and price, linking to individual product pages. The page concludes with a footer containing contact information and copyright details. Overall, the webpage aims to provide an attractive and organized layout for users to browse and explore the Alex Studios product collections.
+
+## productPage(1-25).html
 The webpage consists of a header section with a navigation bar providing links to home, shop, and account pages, along with a shopping bag icon for accessing the cart. The main content showcases a product card featuring an image, title, price, and description, with buttons for selecting product sizes and an "Add to Cart" button for adding items to the shopping cart. The footer contains contact information and copyright details. Overall, the webpage offers a user-friendly interface for browsing products and managing shopping cart items, with a clean and modern design built for responsiveness and layout consistency using Bootstrap.
 
 
@@ -20,9 +23,7 @@ The webpage consists of a header section with a navigation bar providing links t
 
 
 
-
-
-Routes.js
+# routes folder
 cartRoutes.js 
 This JavaScript code sets up routes for handling cart-related functionalities in an Express.js application. It begins by importing Express and creating a router object. Several controller functions are imported, including addToCart, removeFromCart, updateCartQuantity, renderCart, clearCart, and productCartAdded, which are responsible for different actions related to the shopping cart.
 The router then defines HTTP endpoints for these actions using various HTTP methods such as POST and GET. For instance, addToCart handles the addition of a product to the cart when a POST request is made to the '/addProduct' endpoint. Similarly, other endpoints like '/removeProduct', '/updateProduct', '/cartContents', '/clearCartContents', and '/productAddedPage' handle removing products from the cart, updating product quantities, rendering the cart page, clearing the cart contents, and displaying a page confirming the addition of a product to the cart, respectively.
