@@ -43,13 +43,15 @@ const loginAccount = async (req,res) =>{
 
     const existingUser = await User.findOne({email});
     if(!existingUser){
-        return res.redirect('/account.html');
+        res.send('<script>alert("User does not exist please try again"); window.location.href = "/account.html";</script>');
+        return;
     }
 
     const isMatch = await bycrpt.compare(pswd, existingUser.password);    
 
     if(!isMatch){
-        return res.redirect('/account.html');
+        res.send('<script>alert("Password does not exist please try again"); window.location.href = "/account.html";</script>');
+        return;
     }
     req.session.isAuth = true;
     req.session.user = {

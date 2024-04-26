@@ -89,7 +89,7 @@ const updateCartQuantity = (req,res) => {
 const renderCart = (req,res) => {
     // Retrieve cart data from session
     const cart = req.session.cart || [];
-
+ 
     // Render cart.ejs and pass cart data to it
     res.render('cart.ejs', { cart });
 };

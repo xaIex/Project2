@@ -194,7 +194,7 @@ border: solid 2px #6ec6f0;
 
 
 .bg-image {
-    background-image: url("/images/homeimg.png"); /* Specify your image URL */
+    background-image: url("./images/homeimg.png"); /* Specify your image URL */
     background-size: cover;
     background-position: center; /* Align bottom of image with bottom of container */
     min-height: 85vh; /* Set minimum height of container to full viewport height */

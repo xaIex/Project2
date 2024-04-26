@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const bycrpt = require('bcrypt');
@@ -10,13 +11,16 @@ const cartRoute = require('../routes/cartRoutes')
 const orderRoute = require('../routes/orderRoutes')
 
 const app = express();
+
+
 // Set up MongoDB session store
 const store = new MongoDBStore({
-    uri: 'mongodb+srv://xcastillo2001:Sq5lBuispIryiMpf@project2.qadwpbn.mongodb.net/usersandorders',
+    uri: process.env.MONGODB_URI,
     collection: 'sessions'
 });
+
 app.use(session({
-    secret:'SECRET',
+    secret:process.env.SESSION_SECRET,
     saveUninitialized: false, // reducing memory set to false
     resave: false,
     store: store,
@@ -25,6 +29,7 @@ app.use(session({
     }
 }));
 
+
 app.set('view engine','ejs'); // ejs as view engine for dynamic content
 app.use(express.static("public")); // use public files
 
@@ -32,7 +37,7 @@ app.use(express.urlencoded({extended: false})); // parse body give access for re
 app.use(express.json()); // Parse JSON bodies
 
 
-mongoose.connect('mongodb+srv://xcastillo2001:Sq5lBuispIryiMpf@project2.qadwpbn.mongodb.net/usersandorders?retryWrites=true&w=majority&appName=project2')
+mongoose.connect(process.env.MONGODB_URI)
 .then(() => {
     console.log('connected to database!');
 })
@@ -40,32 +45,19 @@ mongoose.connect('mongodb+srv://xcastillo2001:Sq5lBuispIryiMpf@project2.qadwpbn.
     console.log('error cannot connect to database');
 })
 
+//routes
 app.use('/users', userRoute);
 app.use('/cart', cartRoute);
 app.use('/order', orderRoute);
-
-app.get('/myOrders', async (req, res) => {
-    try {
-        // Get the user ID from the session
-        const userId = req.session.user._id;
-
-        // Query the database for orders associated with the user
-        const orders = await Order.find({ user: userId });
-
-        // Log the user details and orders
-        console.log('User ID:', userId);
-        console.log('Orders:', orders);
-
-        // Send the orders back to the client
-        res.json(orders);
-    } catch (error) {
-        console.error('Error fetching orders:', error);
-        res.status(500).send('Error fetching orders');
-    }
+//link to enter the shop
+app.get('/', (req,res)=>{
+    res.render('test');
 });
 
-
-app.listen(3000, () => {
-    console.log("running on port 3000");
+//listen 
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
 });
+
 
