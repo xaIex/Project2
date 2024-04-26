@@ -3,7 +3,7 @@
 
 
 
- home.html
+ ## home.html
 The HTML document defines the structure of a landing page for Alex Studios website. It starts with the inclusion of necessary meta tags for character encoding and viewport settings. The page incorporates Bootstrap framework for responsive design, including both CSS and JavaScript files. Custom fonts from Google Fonts and icons from Font Awesome are utilized throughout the page. The main content is organized into sections: a navigation bar for easy site navigation, a header section featuring the studio's branding, a main section with a call-to-action and imagery, a product section showcasing new arrivals, and a footer containing contact information and copyright details. Each section is styled with custom classes defined in an external stylesheet. The document aims to provide a visually appealing and user-friendly interface for visitors to explore Alex Studios' products and services.
 
 createAccount.html
