@@ -9,7 +9,7 @@ const Order = require('../models/orderModel')
 const userRoute = require('../routes/userRoutes');
 const cartRoute = require('../routes/cartRoutes')
 const orderRoute = require('../routes/orderRoutes')
-
+var path = require('path');
 const app = express();
 
 
@@ -29,9 +29,11 @@ app.use(session({
     }
 }));
 
-
 app.set('view engine','ejs'); // ejs as view engine for dynamic content
 app.use(express.static("public")); // use public files
+app.use(express.static(path.join(__dirname, 'public')));
+app.set('views', path.join(__dirname, '..', 'views'));
+
 
 app.use(express.urlencoded({extended: false})); // parse body give access for req.body
 app.use(express.json()); // Parse JSON bodies
@@ -50,14 +52,19 @@ app.use('/users', userRoute);
 app.use('/cart', cartRoute);
 app.use('/order', orderRoute);
 //link to enter the shop
+/*
 app.get('/', (req,res)=>{
     res.render('test');
-});
+});*/
 
 //listen 
+/*
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
-});
+});*/
+
+module.exports = app;
+
 
 
